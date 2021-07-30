@@ -5,93 +5,85 @@
     <configuration>
         <name>Debug</name>
         <outputs>
-            <file>$PROJ_DIR$\..\..\CMSIS-5.6.0\CMSIS\Core\Include\cmsis_version.h</file>
-            <file>$PROJ_DIR$\src\tarefas.c</file>
-            <file>$TOOLKIT_DIR$\inc\c\aarch32\iccarm_builtin.h</file>
-            <file>$PROJ_DIR$\..\..\CMSIS-5.6.0\CMSIS\Core\Include\cmsis_iccarm.h</file>
-            <file>$PROJ_DIR$\..\..\CMSIS-5.6.0\CMSIS\Core\Include\core_cm4.h</file>
-            <file>$PROJ_DIR$\Debug\Obj\startup_TM4C1294.o.rsp</file>
-            <file>$TOOLKIT_DIR$\inc\c\stddef.h</file>
-            <file>$PROJ_DIR$\..\drivers\driverleds.c</file>
-            <file>$PROJ_DIR$\src\system_TM4C1294.h</file>
-            <file>$PROJ_DIR$\src\TM4C1294NCPDT.h</file>
-            <file>$PROJ_DIR$\src\system_TM4C1294_TW.c</file>
             <file>$PROJ_DIR$\..\drivers\driverbuttons.c</file>
-            <file>$PROJ_DIR$\src\RTX_Config.h</file>
-            <file>$PROJ_DIR$\src\rtx_lib.c</file>
-            <file>$TOOLKIT_DIR$\inc\c\stdint.h</file>
-            <file>$TOOLKIT_DIR$\inc\c\stdbool.h</file>
-            <file>$PROJ_DIR$\..\..\TivaWare_C_Series-2.1.4.178\driverlib\ewarm\Exe\driverlib.a</file>
-            <file>$PROJ_DIR$\..\..\CMSIS-5.6.0\CMSIS\RTOS2\RTX\Library\IAR\IDE\CM4F\Exe\RTX_CM.a</file>
-            <file>$PROJ_DIR$\src\startup_TM4C1294.s</file>
-            <file>$PROJ_DIR$\src\RTX_Config.c</file>
-            <file>$TOOLKIT_DIR$\inc\c\DLib_Product.h</file>
-            <file>$TOOLKIT_DIR$\inc\c\ycheck.h</file>
-            <file>$PROJ_DIR$\..\..\CMSIS-5.6.0\CMSIS\Core\Include\cmsis_compiler.h</file>
+            <file>$PROJ_DIR$\..\..\TivaWare_C_Series-2.1.4.178\driverlib\gpio.h</file>
+            <file>$PROJ_DIR$\src\tarefas.c</file>
             <file>$TOOLKIT_DIR$\inc\c\DLib_Config_Normal.h</file>
-            <file>$PROJ_DIR$\..\..\TivaWare_C_Series-2.1.4.178\inc\hw_memmap.h</file>
-            <file>$PROJ_DIR$\Debug\Exe\desafio.out</file>
-            <file>$PROJ_DIR$\..\..\CMSIS-5.6.0\CMSIS\RTOS2\RTX\Include\rtx_os.h</file>
+            <file>$PROJ_DIR$\..\..\TivaWare_C_Series-2.1.4.178\driverlib\ewarm\Exe\driverlib.a</file>
             <file>$PROJ_DIR$\..\..\TivaWare_C_Series-2.1.4.178\driverlib\sysctl.h</file>
-            <file>$PROJ_DIR$\..\..\TivaWare_C_Series-2.1.4.178\inc\hw_ints.h</file>
-            <file>$PROJ_DIR$\Debug\Obj\system_TM4C1294_TW.o</file>
-            <file>$PROJ_DIR$\..\..\CMSIS-5.6.0\CMSIS\RTOS2\Include\cmsis_os2.h</file>
-            <file>$PROJ_DIR$\Debug\Obj\driverleds.o</file>
-            <file>$PROJ_DIR$\Debug\Obj\startup_TM4C1294.o</file>
             <file>$TOOLKIT_DIR$\inc\c\ysizet.h</file>
             <file>$PROJ_DIR$\..\drivers\driverleds.h</file>
-            <file>$PROJ_DIR$\..\..\TivaWare_C_Series-2.1.4.178\driverlib\gpio.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\driverleds.o</file>
+            <file>$PROJ_DIR$\..\..\CMSIS-5.6.0\CMSIS\RTOS2\RTX\Library\IAR\IDE\CM4F\Exe\RTX_CM.a</file>
+            <file>$PROJ_DIR$\src\system_TM4C1294_TW.c</file>
+            <file>$PROJ_DIR$\..\..\TivaWare_C_Series-2.1.4.178\inc\hw_memmap.h</file>
+            <file>$TOOLKIT_DIR$\inc\c\stddef.h</file>
+            <file>$PROJ_DIR$\src\RTX_Config.h</file>
+            <file>$PROJ_DIR$\..\drivers\driverleds.c</file>
+            <file>$PROJ_DIR$\src\system_TM4C1294.h</file>
+            <file>$TOOLKIT_DIR$\inc\c\DLib_Product.h</file>
+            <file>$PROJ_DIR$\..\..\CMSIS-5.6.0\CMSIS\Core\Include\cmsis_compiler.h</file>
+            <file>$PROJ_DIR$\..\..\CMSIS-5.6.0\CMSIS\RTOS2\RTX\Include\rtx_os.h</file>
+            <file>$PROJ_DIR$\..\..\CMSIS-5.6.0\CMSIS\Core\Include\core_cm4.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\system_TM4C1294_TW.o</file>
+            <file>$PROJ_DIR$\Debug\Exe\desafio.out</file>
+            <file>$PROJ_DIR$\src\rtx_lib.c</file>
+            <file>$PROJ_DIR$\..\..\CMSIS-5.6.0\CMSIS\RTOS2\Include\cmsis_os2.h</file>
             <file>$PROJ_DIR$\..\..\CMSIS-5.6.0\CMSIS\RTOS2\RTX\Include\rtx_evr.h</file>
+            <file>$TOOLKIT_DIR$\inc\c\ycheck.h</file>
+            <file>$PROJ_DIR$\..\..\CMSIS-5.6.0\CMSIS\Core\Include\cmsis_version.h</file>
+            <file>$TOOLKIT_DIR$\inc\c\stdint.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\startup_TM4C1294.o.rsp</file>
+            <file>$PROJ_DIR$\src\RTX_Config.c</file>
+            <file>$TOOLKIT_DIR$\inc\c\stdbool.h</file>
+            <file>$PROJ_DIR$\src\startup_TM4C1294.s</file>
+            <file>$PROJ_DIR$\..\..\TivaWare_C_Series-2.1.4.178\inc\hw_ints.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\startup_TM4C1294.o</file>
+            <file>$PROJ_DIR$\src\TM4C1294NCPDT.h</file>
+            <file>$TOOLKIT_DIR$\inc\c\aarch32\iccarm_builtin.h</file>
+            <file>$PROJ_DIR$\..\..\CMSIS-5.6.0\CMSIS\Core\Include\cmsis_iccarm.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\RTX_Config.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\tarefas.o</file>
+            <file>$TOOLKIT_DIR$\inc\c\yvals.h</file>
+            <file>$PROJ_DIR$\..\drivers\driverbuttons.h</file>
             <file>$TOOLKIT_DIR$\inc\c\DLib_Defaults.h</file>
             <file>$PROJ_DIR$\Debug\Obj\driverbuttons.o</file>
             <file>$PROJ_DIR$\Debug\Obj\rtx_lib.o</file>
-            <file>$PROJ_DIR$\..\drivers\driverbuttons.h</file>
-            <file>$TOOLKIT_DIR$\inc\c\yvals.h</file>
             <file>$PROJ_DIR$\..\..\TivaWare_C_Series-2.1.4.178\driverlib\interrupt.h</file>
-            <file>$PROJ_DIR$\Debug\Obj\tarefas.o</file>
-            <file>$PROJ_DIR$\Debug\Obj\RTX_Config.o</file>
+            <file>$TOOLKIT_DIR$\lib\dl7M_tln.a</file>
+            <file>$TOOLKIT_DIR$\lib\rt7M_tl.a</file>
+            <file>$TOOLKIT_DIR$\lib\m7M_tls.a</file>
+            <file>$TOOLKIT_DIR$\lib\shb_l.a</file>
+            <file>$PROJ_DIR$\Debug\List\desafio.map</file>
+            <file>$TOOLKIT_DIR$\config\linker\TexasInstruments\TM4C1294NC.icf</file>
+            <file>$PROJ_DIR$\..\prodcons\src\prodcons.c</file>
         </outputs>
         <file>
-            <name>$PROJ_DIR$\src\tarefas.c</name>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 23 37 20 6 14 21 33 41 30 8 40 34</file>
-                </tool>
-            </inputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\drivers\driverleds.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 31</file>
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 23 37 20 15 14 21 41 34 35 27 24</file>
-                </tool>
-            </inputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\src\system_TM4C1294_TW.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 29</file>
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 23 37 20 2 15 14 21 41 22 3 0 4 9 8 27</file>
-                </tool>
-            </inputs>
-        </file>
-        <file>
             <name>$PROJ_DIR$\..\drivers\driverbuttons.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 42</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 3 41 16 30 27 25 39 40 1 44 5 32 11</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>[ROOT_NODE]</name>
+            <outputs>
+                <tool>
+                    <name>ILINK</name>
+                    <file> 21 49</file>
+                </tool>
+            </outputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\src\tarefas.c</name>
             <outputs>
                 <tool>
                     <name>ICCARM</name>
@@ -101,7 +93,52 @@
             <inputs>
                 <tool>
                     <name>ICCARM</name>
-                    <file> 23 37 20 15 14 21 41 40 35 42 27 28 24</file>
+                    <file> 3 41 16 12 27 25 6 39 23 15 40 7</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\src\system_TM4C1294_TW.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 20</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 3 41 16 35 30 27 25 39 17 36 26 19 34 15 5</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\drivers\driverleds.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 8</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 3 41 16 30 27 25 39 7 1 5 11</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\Debug\Exe\desafio.out</name>
+            <outputs>
+                <tool>
+                    <name>ILINK</name>
+                    <file> 49</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ILINK</name>
+                    <file> 50 45 47 46 48 9 37 42 8 43 33 20 38 4</file>
                 </tool>
             </inputs>
         </file>
@@ -110,28 +147,13 @@
             <outputs>
                 <tool>
                     <name>ICCARM</name>
-                    <file> 39</file>
+                    <file> 43</file>
                 </tool>
             </outputs>
             <inputs>
                 <tool>
                     <name>ICCARM</name>
-                    <file> 23 37 20 2 6 14 21 33 41 22 3 30 36 26 12</file>
-                </tool>
-            </inputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\src\startup_TM4C1294.s</name>
-            <outputs>
-                <tool>
-                    <name>AARM</name>
-                    <file> 32</file>
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>AARM</name>
-                    <file> 5</file>
+                    <file> 3 41 16 35 12 27 25 6 39 17 36 23 24 18 13</file>
                 </tool>
             </inputs>
         </file>
@@ -140,24 +162,30 @@
             <outputs>
                 <tool>
                     <name>ICCARM</name>
-                    <file> 44</file>
+                    <file> 37</file>
                 </tool>
             </outputs>
             <inputs>
                 <tool>
                     <name>ICCARM</name>
-                    <file> 23 37 20 2 6 14 21 33 41 22 3 30 26</file>
+                    <file> 3 41 16 35 12 27 25 6 39 17 36 23 18</file>
                 </tool>
             </inputs>
         </file>
         <file>
-            <name>[ROOT_NODE]</name>
+            <name>$PROJ_DIR$\src\startup_TM4C1294.s</name>
             <outputs>
                 <tool>
-                    <name>ILINK</name>
-                    <file> 25</file>
+                    <name>AARM</name>
+                    <file> 33</file>
                 </tool>
             </outputs>
+            <inputs>
+                <tool>
+                    <name>AARM</name>
+                    <file> 28</file>
+                </tool>
+            </inputs>
         </file>
         <forcedrebuild>
             <name>[REBUILD_ALL]</name>
