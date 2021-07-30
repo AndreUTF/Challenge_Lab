@@ -33,10 +33,9 @@ void control_task(void *arg){
   uint32_t tick;
   uint32_t tick1;
   while(1){
-    osMessageQueuePut(message_id, &msg1, NULL, osWaitForever);
     read_bt1 = ButtonRead(USW1);
     read_bt2 = ButtonRead(USW2);
-    
+    osMessageQueuePut(message_id, &msg1, NULL, osWaitForever);
     if(read_bt1 == 0 && change == 0)
     {
       tick = osKernelGetTickCount();
