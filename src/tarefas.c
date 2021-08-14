@@ -1,8 +1,16 @@
+#include <stdint.h>
+#include <stdbool.h>
 #include "system_tm4c1294.h" // CMSIS-Core
 #include "driverleds.h" // device drivers
+#include "driverbuttons.h"
 #include "cmsis_os2.h" // CMSIS-RTOS
-#include "driverleds.h" // Projects/drivers
-#include "driverbuttons.h" // Projects/drivers
+#include "inc/hw_memmap.h"
+#include "driverlib/gpio.h"
+#include "driverlib/sysctl.h"
+#include "driverlib/systick.h"
+#include "driverlib/pin_map.h"
+#include "driverlib/interrupt.h"
+
 osThreadId_t thread1_id, thread2_id, thread3_id, thread4_id, control_id;
 osMutexId_t mutex1_id, mutex2_id;
 osMessageQueueId_t message_id;
@@ -11,86 +19,104 @@ typedef struct // STRUCT
 {
     uint8_t LED;   //LED
     uint16_t PWM; //PWM
+    bool isActive; //isActive
 } LEDPWM; // struct LEDPWM
 
 typedef struct // STRUCT
 {
     uint8_t led; //LED
-    uint8_t pwm; //PWM 
+    uint8_t pwm; //PWM
+    bool change_led; 
+    bool change_pwm;
+    bool read_queue; 
 } msgLEDPWM; //STRUCT
 
 LEDPWM ledPWM1, ledPWM2, ledPWM3, ledPWM4;
 msgLEDPWM msg1;
+bool change_led, change_pwm, read_queue;
 
 void control_task(void *arg){
   int var = 0;
+  int state = 0;
   uint8_t read_bt1 = 0;
   uint8_t read_bt2 = 0;
-  uint8_t led_initial = 0;
-  uint8_t pwm_intital = 0;
-  int change = 0;
-  int change1 = 0;
-  uint32_t tick;
-  uint32_t tick1;
   while(1){
-    read_bt1 = ButtonRead(USW1);
-    read_bt2 = ButtonRead(USW2);
-    osMessageQueuePut(message_id, &msg1, NULL, osWaitForever);
-    if(read_bt1 == 0 && change == 0)
-    {
-      tick = osKernelGetTickCount();
-      osDelayUntil(tick + 200);
-      read_bt1 = ButtonRead(USW1);
-      if(read_bt1 == 0)
+    //osThreadFlagsWait(0x0011, NULL, osWaitForever);
+    if(msg1.change_led == true){
+      if(msg1.led == LED1)
       {
-        tick1 = osKernelGetTickCount();
+        msg1.led = LED2;
+        ledPWM1.isActive = false;
+        ledPWM2.isActive = true;
+        ledPWM3.isActive = false;
+        ledPWM4.isActive = false;
       }
-      if((tick1-tick)>=200)
+      else if(msg1.led == LED2)
       {
-        change = 1;
-        if(msg1.led == LED1)
-        {
-          msg1.led = LED2;
-          change = 0;
-        }
-        else if(msg1.led == LED2)
-        {
-          msg1.led = LED3;
-          change = 0;
-        }
-        else if(msg1.led == LED3)
-        {
-          msg1.led = LED4;
-          change = 0;
-        }
-        else if(msg1.led == LED4)
-        {
-          msg1.led = LED1;
-          change = 0;
-        }
+        msg1.led = LED3;
+        ledPWM1.isActive = false;
+        ledPWM2.isActive = false;
+        ledPWM3.isActive = true;
+        ledPWM4.isActive = false;
       }
+      else if(msg1.led == LED3)
+      {
+        msg1.led = LED4;
+        ledPWM1.isActive = false;
+        ledPWM2.isActive = false;
+        ledPWM3.isActive = false;
+        ledPWM4.isActive = true;
+      }
+      else if(msg1.led == LED4)
+      {
+        msg1.led = LED1;
+        ledPWM1.isActive = true;
+        ledPWM2.isActive = false;
+        ledPWM3.isActive = false;
+        ledPWM4.isActive = false;
+      }
+      msg1.change_led = false;
     }
-    
-    if(read_bt2 == 0 && change1 == 0)
-    {
-      tick = osKernelGetTickCount();
-      osDelayUntil(tick + 200);
-      read_bt2 = ButtonRead(USW2);
-      if(read_bt2 == 0)
-      {
-        tick1 = osKernelGetTickCount();
-      }
-      if((tick1-tick)>=200)
-      {
-        change1 = 1;
-        msg1.pwm += 1;
-        if(msg1.pwm > 10)
+    if(msg1.change_pwm == true){
+      if(msg1.led == LED1){
+        ledPWM1.PWM += 1;
+        if(ledPWM1.PWM > 10)
         {
-          msg1.pwm = 0;
+          ledPWM1.PWM = 0;
         }
-        change1 = 0;
+        msg1.pwm = ledPWM1.PWM;
+        msg1.change_pwm = false;
       }
+      else if(msg1.led == LED2){
+        ledPWM2.PWM += 1;
+        if(ledPWM2.PWM > 10)
+        {
+          ledPWM2.PWM = 0;
+        }
+          
+        msg1.pwm = ledPWM2.PWM;
+        msg1.change_pwm = false;
+      }
+      else if(msg1.led == LED3){
+        ledPWM3.PWM += 1;
+        if(ledPWM3.PWM > 10)
+        {
+          ledPWM3.PWM = 0;
+        }
+        msg1.pwm = ledPWM3.PWM;
+        msg1.change_pwm = false;
+      }
+      else if(msg1.led == LED4){
+        ledPWM4.PWM += 1;
+        if(ledPWM4.PWM > 10)
+        {
+          ledPWM4.PWM = 0;
+        }
+        msg1.pwm = ledPWM4.PWM;
+        msg1.change_pwm = false;
+      }    
     }
+    osMessageQueuePut(message_id, &msg1, NULL, 0);
   }
 }
 
@@ -104,46 +130,109 @@ void threadPWM(void *arg){
     foo = (LEDPWM*) arg;
     LED = foo->LED;
     PWM = foo->PWM;
-    state = osMessageQueueGet(message_id, &msg1, NULL, osWaitForever);
-    if(state == osOK){
-      if(msg1.led == LED){
-        osMutexAcquire(mutex1_id,osWaitForever);
+      if(foo->isActive == true){
         PWM = msg1.pwm;
+        tick = osKernelGetTickCount();
         osMutexAcquire(mutex2_id,osWaitForever);
         LEDOn(LED);
         osMutexRelease(mutex2_id);
+        osDelayUntil(tick + (8*PWM));
+        
         tick = osKernelGetTickCount();
-        osDelayUntil(tick + PWM);
         osMutexAcquire(mutex2_id,osWaitForever);
         LEDOff(LED);
         osMutexRelease(mutex2_id);
+        osDelayUntil(tick + 8*(10-PWM));
+        
         tick = osKernelGetTickCount();
+        osMutexAcquire(mutex2_id,osWaitForever);
+        LEDOn(LED);
+        osMutexRelease(mutex2_id);
+        osDelayUntil(tick + PWM);
+        
+        
+        tick = osKernelGetTickCount();
+        osMutexAcquire(mutex2_id,osWaitForever);
+        LEDOff(LED);
+        osMutexRelease(mutex2_id);
         osDelayUntil(tick + (10 - PWM));
-        osMutexRelease(mutex1_id);
       }
-      
-    }
+      else {
+        tick = osKernelGetTickCount();
+        osMutexAcquire(mutex2_id,osWaitForever);
+        LEDOn(LED);
+        osMutexRelease(mutex2_id);
+        osDelayUntil(tick + PWM);
+        
+        tick = osKernelGetTickCount();
+        osMutexAcquire(mutex2_id,osWaitForever);
+        LEDOff(LED);
+        osMutexRelease(mutex2_id);
+        osDelayUntil(tick + (10 - PWM));
+      }
+      if(msg1.read_queue == true){
+        state = osMessageQueueGet(message_id, &msg1, NULL, osWaitForever);
+        if(state == osOK){
+          if(msg1.led == LED1){
+            ledPWM1.PWM = msg1.pwm;
+          }
+          if(msg1.led == LED2){
+            ledPWM2.PWM = msg1.pwm;
+          }
+          if(msg1.led == LED3){
+
+            ledPWM3.PWM = msg1.pwm;
+          }
+          if(msg1.led == LED4){
+            ledPWM4.PWM = msg1.pwm;
+          }
+        }
+        read_queue = false;
+      }
+    //}
   } // while
 } // thread
 
+void GPIOJ_Handler(void){
+  int bt1_read = ButtonRead(USW1);
+  int bt2_read = ButtonRead(USW2);
+  if(bt1_read == 0 && bt2_read != 0){
+    msg1.change_led = true;
+    msg1.change_pwm = false;
+    ButtonIntClear(USW1);
+  }
+  else if(bt1_read != false && bt2_read == 0){
+    msg1.change_led = false;
+    msg1.change_pwm = true;
+    ButtonIntClear(USW2);
+  }
+}
+
 void main(void){
-  ButtonInit(USW1 | USW2);
+  ButtonInit(USW1);
+  ButtonInit(USW2);
+  ButtonIntEnable(USW1);
+  ButtonIntEnable(USW2);
   LEDInit(LED4 | LED3 | LED2 | LED1);
   ledPWM1.LED = LED1;
-  ledPWM1.PWM = 0;
+  ledPWM1.PWM = 1;
+  ledPWM1.isActive = true;
   ledPWM2.LED = LED2;
-  ledPWM2.PWM = 0;
+  ledPWM2.PWM = 2;
+  ledPWM2.isActive = false;
   ledPWM3.LED = LED3;
-  ledPWM3.PWM = 0;
+  ledPWM3.PWM = 4;
+  ledPWM3.isActive = false;
   ledPWM4.LED = LED4;
-  ledPWM4.PWM = 0;
+  ledPWM4.PWM = 6;
+  ledPWM4.isActive = false;
   msg1.led = LED1;
   msg1.pwm = 0;
   
   osKernelInitialize();
   mutex1_id = osMutexNew(NULL);
   mutex2_id = osMutexNew(NULL);
-  message_id = osMessageQueueNew(1, sizeof(msg1), NULL);
+  message_id = osMessageQueueNew(5, sizeof(msg1), NULL);
   thread1_id = osThreadNew(threadPWM, (void *)&ledPWM1, NULL);
   thread2_id = osThreadNew(threadPWM, (void *)&ledPWM2, NULL);
   thread3_id = osThreadNew(threadPWM, (void *)&ledPWM3, NULL);
